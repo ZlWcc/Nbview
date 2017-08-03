@@ -25,10 +25,10 @@ class mk_wav(object):
         return bytes_stream
 
     def get_wav(self, wav_bytes, file='default.wav'):
-        reste = wav_bytes % 1024
+        reste = len(wav_bytes) % 1024
         if reste == 0:
             with open(file, 'ab') as f:
-                f.write(rs)
+                f.write(wav_bytes)
 
     def clean_wav(self, file):
         with open(file, 'rb') as f:
@@ -36,9 +36,9 @@ class mk_wav(object):
 
 
 wav = mk_wav()
-file1 = wav.clean_wav(r'F:\windows_voice\bin\wav\iflytek01.wav')
-file2 = wav.clean_wav(r'F:\windows_voice\bin\wav\iflytek02.wav')
+file1 = wav.clean_wav(r'source01.wav')
+file2 = wav.clean_wav(r'source02.wav')
 wav_data = wav.source_wav(*[file1, file2])
-wav.get_wav('iflytek04.wav', wav_data)
+wav.get_wav(wav_data, 'des1.wav')
 
 
